@@ -1,0 +1,133 @@
+
+<!-- Contacts -->
+
+<div class="widget w-contacts">
+
+	<!----------------------------------------------- Map --------------------------------------------------------->
+
+	<div class="section">
+		<div id="map"></div>
+	</div>
+
+	<!-- JS library for Map Leaflet -->
+	<script src="js/libs/leaflet.js"></script>
+	<script src="js/libs/MarkerClusterGroup.js"></script>
+	<!-- ...end JS library for Map Leaflet -->
+
+	<!-- JS-init for Map -->
+	<script>
+
+		/* -----------------------
+			  * Create the map
+			  * https://leafletjs.com/
+		  * --------------------- */
+
+		maps = {
+			maps: {
+				mapUSA: {
+					config: {
+						id: 'map',
+						map: {
+							center: new L.LatLng(38.897663, -77.036575),
+							zoom: 12,
+							maxZoom: 18,
+							layers: new L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+								maxZoom: 16,
+								attribution: ''
+							})
+						},
+						icon: {
+							iconSize  : [36, 54],
+							iconAnchor: [22, 94],
+							className : 'icon-map'
+						}
+					},
+					markers: [
+						{
+							coords: [38.897663, -77.036575],
+							icon: 'map-marker.png'
+						}
+					]
+				}
+			},
+			init: function () {
+				var _this = this;
+
+				for (var key in this.maps) {
+					var data = this.maps[key];
+
+					if (!data.config || !data.markers) {
+						continue;
+					}
+
+					if (!document.getElementById(data.config.id)) {
+						continue;
+					}
+
+					var map = new L.map(data.config.id, data.config.map);
+					var cluster = L.markerClusterGroup({
+						iconCreateFunction: function (cluster) {
+							var childCount = cluster.getChildCount();
+							var config = data.config.cluster;
+							return new L.DivIcon({
+								html: '<div><span>' + childCount + '</span></div>',
+								className: 'marker-cluster marker-cluster-' + key,
+								iconSize: new L.Point(config.iconSize[0], config.iconSize[1])
+							});
+						}
+					});
+					data.markers.forEach(function (item) {
+						data.config.icon['iconUrl'] = './img/' + item.icon;
+						var icon = L.icon(data.config.icon);
+
+						var marker = L.marker(item.coords, {icon: icon});
+						cluster.addLayer(marker);
+					});
+
+					map.addLayer(cluster);
+					this.disableScroll(jQuery("#" + data.config.id), map);
+				}
+			},
+			disableScroll: function ($map, map) {
+				map.scrollWheelZoom.disable();
+
+				$map.bind('mousewheel DOMMouseScroll', function (event) {
+					event.stopPropagation();
+					if (event.ctrlKey == true) {
+						event.preventDefault();
+						map.scrollWheelZoom.enable();
+						setTimeout(function () {
+							map.scrollWheelZoom.disable();
+						}, 1000);
+					} else {
+						map.scrollWheelZoom.disable();
+					}
+				});
+			}
+		};
+
+		document.addEventListener("DOMContentLoaded", function() {
+			maps.init();
+		});
+	</script>
+
+	<!-- ... end JS-init for Map -->
+
+	<!------------------------------------------- ... end Map ----------------------------------------------------->
+
+	<ul>
+		<li>
+			<span class="title">Address:</span>
+			<span class="text">Fake Street 320, San Francisco California, USA.
+							</span>
+		</li>
+		<li>
+			<span class="title">Working Hours:</span>
+			<span class="text">Mon-Fri 9:00am to 6:00pm
+								Weekends 10:00am to 8:00pm
+							</span>
+		</li>
+	</ul>
+</div>
+
+<!-- ... end Contacts -->

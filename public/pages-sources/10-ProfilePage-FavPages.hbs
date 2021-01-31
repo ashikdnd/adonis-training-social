@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<title>Profile Page - Fav Pages</title>
+
+	<!-- Required meta tags always come first -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+	<!-- Bootstrap CSS -->
+
+	<link rel="stylesheet" type="text/css" href="Bootstrap/dist/css/bootstrap.css">
+
+
+	<!-- Main Styles CSS -->
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/fonts.min.css">
+
+
+
+
+</head>
+
+<body class="page-has-left-panels page-has-right-panels">
+
+{{> preloaders/preloader-main }}
+
+{{> headers-navigations/left-panel }}
+
+{{> headers-navigations/left-panel-responsive }}
+
+{{> headers-navigations/right-panel }}
+
+{{> headers-navigations/right-panel-responsive }}
+
+{{> headers-navigations/header-BP page-title="Profile Page" }}
+
+{{> headers-navigations/header-BP-responsive }}
+
+<div class="header-spacer"></div>
+
+{{> headers-navigations/top-header-profile }}
+
+
+<div class="container">
+	<div class="row">
+		<div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+			<div class="ui-block responsive-flex">
+				<div class="ui-block-title">
+					<div class="h6 title">James’s Friends (86)</div>
+					<div class="w-select">
+						<div class="title">Order By:</div>
+						<fieldset class="form-group">
+							<select class="selectpicker form-control">
+								<option value="NU">Number of Favourites</option>
+								<option value="NU">Number of Photos</option>
+								<option value="NU">Number of Videos</option>
+							</select>
+						</fieldset>
+					</div>
+
+					<form class="w-search">
+						<div class="form-group with-button">
+							<input class="form-control" type="text" placeholder="Search Fav Pages...">
+							<button>
+								<svg class="olymp-magnifying-glass-icon"><use xlink:href="#olymp-magnifying-glass-icon"></use></svg>
+							</button>
+						</div>
+					</form>
+					<a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="#olymp-three-dots-icon"></use></svg></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+			<div class="ui-block">
+				{{> friend-items-fav/friend-items-fav1 }}
+			</div>
+		</div>
+		<div class="col col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+			<div class="ui-block">
+				{{> friend-items-fav/friend-items-fav2 }}
+			</div>
+		</div>
+		<div class="col col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+			<div class="ui-block">
+				{{> friend-items-fav/friend-items-fav3 }}
+			</div>
+		</div>
+		<div class="col col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+			<div class="ui-block">
+				{{> friend-items-fav/friend-items-fav4 }}
+			</div>
+		</div>
+
+		<div class="col col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+			<div class="ui-block">
+				{{> friend-items-fav/friend-items-fav5 }}
+			</div>
+		</div>
+		<div class="col col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+			<div class="ui-block">
+				{{> friend-items-fav/friend-items-fav6 }}
+			</div>
+		</div>
+		<div class="col col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+			<div class="ui-block">
+				{{> friend-items-fav/friend-items-fav7 }}
+			</div>
+		</div>
+		<div class="col col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+			<div class="ui-block">
+				{{> friend-items-fav/friend-items-fav8 }}
+			</div>
+		</div>
+
+	</div>
+</div>
+
+
+{{> windows-popup/update-header-photo}}
+
+{{> windows-popup/choose-from-my-photo}}
+
+{{> back-to-top}}
+
+{{> windows-popup/window-chat-responsive}}
+
+
+<!-- JS Scripts -->
+<script src="js/jQuery/jquery-3.5.1.js"></script>
+<script src="js/libs/jquery.appear.js"></script>
+<script src="js/libs/jquery.mousewheel.js"></script>
+<script src="js/libs/perfect-scrollbar.js"></script>
+<script src="js/libs/svgxuse.js"></script>
+<script src="js/libs/imagesloaded.pkgd.js"></script>
+<script src="js/libs/Headroom.js"></script>
+<script src="js/libs/popper.min.js"></script>
+<script src="js/libs/material.min.js"></script>
+<script src="js/libs/bootstrap-select.js"></script>
+<script src="js/libs/smooth-scroll.js"></script>
+<script src="js/libs/selectize.js"></script>
+<script src="js/libs/swiper.jquery.js"></script>
+<script src="js/libs/moment.js"></script>
+<script src="js/libs/daterangepicker.js"></script>
+<script src="js/libs/isotope.pkgd.js"></script>
+<script src="js/libs/ajax-pagination.js"></script>
+<script src="js/libs/jquery.magnific-popup.js"></script>
+<script src="js/libs/aos.js"></script>
+<script src="js/libs/purecounter_vanilla.js"></script>
+
+<script src="js/main.js"></script>
+<script src="js/libs-init/libs-init.js"></script>
+<script defer src="fonts/fontawesome-all.js"></script>
+
+<script src="Bootstrap/dist/js/bootstrap.bundle.js"></script>
+
+<!-- SVG icons loader -->
+<script src="js/svg-loader.js"></script>
+<!-- /SVG icons loader -->
+
+</body>
+</html>
