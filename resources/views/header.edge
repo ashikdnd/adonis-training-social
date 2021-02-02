@@ -173,6 +173,18 @@
 
               <li>
                 <div class="author-thumb">
+                  <img src="img'avatar60-sm.jpg" alt="author">
+                  <alh6 class="notification-friend">
+                    <span class="chat-message-item"></span>
+                    <span class="notifcation-date">
+
+                    </span>
+                  </alh6>
+                </div>
+              </li>
+
+              <li>
+                <div class="author-thumb">
                   <img loading="lazy" src="img/avatar60-sm.jpg" alt="author">
                 </div>
                 <div class="notification-event">
@@ -374,7 +386,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="logout">
                     <svg class="olymp-logout-icon"><use xlink:href="#olymp-logout-icon"></use></svg>
 
                     <span>Log Out</span>
@@ -458,9 +470,9 @@
         </div>
         <a href="02-ProfilePage.html" class="author-name fn">
           <div class="author-title">
-            James Spiegel <svg class="olymp-dropdown-arrow-icon"><use xlink:href="#olymp-dropdown-arrow-icon"></use></svg>
+            {{auth.user.firstname}} {{auth.user.lastname}} <svg class="olymp-dropdown-arrow-icon"><use xlink:href="#olymp-dropdown-arrow-icon"></use></svg>
           </div>
-          <span class="author-subtitle">SPACE COWBOY</span>
+          <span class="author-subtitle">{{auth.user.designation.toUpperCase()}}</span>
         </a>
       </div>
 

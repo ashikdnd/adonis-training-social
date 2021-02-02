@@ -19,10 +19,11 @@ const Route = use('Route')
 
 Route.group(() => {
   Route.get('', 'AppController.profile')
-}).middleware('auth')
+  Route.get('logout', 'AuthController.logout')
+}).middleware(['checkAuth', 'auth'])
 
 Route.group(() => {
   Route.get('login', 'AuthController.loginPage')
-  Route.get('users', 'AuthController.listUsers')
-  Route.get('update', 'AuthController.updateUser')
-}).middleware('guest')
+  Route.post('login', 'AuthController.login')
+  Route.post('register', 'AuthController.register')
+}).middleware(['redirectToHome', 'guest'])

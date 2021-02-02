@@ -65,7 +65,7 @@
 
             <a href="#" class="logo">
                 <div class="img-wrap">
-                    <img loading="lazy" src="img/logo.png" alt="Olympus">
+                    <img loading="lazy" src="img/logo.png" alt="Social Network">
                     <img loading="lazy" src="img/logo-colored-small.png" alt="Olympus" class="logo-colored">
                 </div>
                 <div class="title-block">
@@ -307,45 +307,51 @@
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div class="tab-pane active" id="home" role="tabpanel">
-                        <div class="title h6">Register to Olympus</div>
-                        <form class="content">
+                        <div class="title h6">Registration <br>
+                          @if(flashMessage('message'))
+                          <span style="font-size: 11px; color: grey">{{flashMessage('message')}}</span>
+                          @endif
+                        </div>
+                        <form class="content" action="register" method="POST">
+                            {{csrfField()}}
                             <div class="row">
                                 <div class="col col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group label-floating">
                                         <label class="control-label">First Name</label>
-                                        <input class="form-control" placeholder="" type="text">
+                                        <input class="form-control" name="firstname" placeholder="" type="text">
                                     </div>
                                 </div>
                                 <div class="col col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Last Name</label>
-                                        <input class="form-control" placeholder="" type="text">
+                                        <input class="form-control" name="lastname" placeholder="" type="text">
                                     </div>
                                 </div>
                                 <div class="col col-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Your Email</label>
-                                        <input class="form-control" placeholder="" type="email">
+                                        <input class="form-control" name="email" placeholder="" type="email">
                                     </div>
                                     <div class="form-group label-floating">
                                         <label class="control-label">Your Password</label>
-                                        <input class="form-control" placeholder="" type="password">
+                                        <input class="form-control" name="password" placeholder="" type="password">
                                     </div>
 
                                     <div class="form-group date-time-picker label-floating">
                                         <label class="control-label">Your Birthday</label>
-                                        <input name="datetimepicker" value="10/24/1984"/>
+                                        <input name="datetimepicker" autocomplete="off" name="dob" value=""/>
                                         <span class="input-group-addon">
-														<svg class="olymp-calendar-icon"><use
-                                                                xlink:href="#olymp-calendar-icon"></use></svg>
-													</span>
+                                            <svg class="olymp-calendar-icon">
+                                              <use xlink:href="#olymp-calendar-icon"></use>
+                                            </svg>
+													              </span>
                                     </div>
 
                                     <div class="form-group label-floating is-select">
                                         <label class="control-label">Your Gender</label>
-                                        <select class="selectpicker form-control">
-                                            <option value="MA">Male</option>
-                                            <option value="FE">Female</option>
+                                        <select name="gender" class="selectpicker form-control">
+                                            <option value="M">Male</option>
+                                            <option value="F">Female</option>
                                         </select>
                                     </div>
 
@@ -358,7 +364,7 @@
                                         </div>
                                     </div>
 
-                                    <a href="#" class="btn btn-purple btn-lg full-width">Complete Registration!</a>
+                                    <input type="submit" class="btn btn-purple btn-lg full-width" value="Complete Registration!">
                                 </div>
                             </div>
                         </form>
@@ -366,16 +372,17 @@
 
                     <div class="tab-pane" id="profile" role="tabpanel">
                         <div class="title h6">Login to your Account</div>
-                        <form class="content">
+                        <form class="content" action="login" method="POST">
+                            {{csrfField()}}
                             <div class="row">
                                 <div class="col col-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Your Email</label>
-                                        <input class="form-control" placeholder="" type="email">
+                                        <input name="email" class="form-control" placeholder="" type="email">
                                     </div>
                                     <div class="form-group label-floating">
                                         <label class="control-label">Your Password</label>
-                                        <input class="form-control" placeholder="" type="password">
+                                        <input name="password" class="form-control" placeholder="" type="password">
                                     </div>
 
                                     <div class="remember">
@@ -390,7 +397,7 @@
                                             my Password</a>
                                     </div>
 
-                                    <a href="#" class="btn btn-lg btn-primary full-width">Login</a>
+                                    <input type="submit" value="Login" class="btn btn-lg btn-primary full-width">
 
                                     <div class="or"></div>
 
@@ -447,7 +454,7 @@
                     </div>
                     <div class="form-group label-floating">
                         <label class="control-label">Your New Password</label>
-                        <input class="form-control" placeholder="" type="password" value="olympus">
+                        <input class="form-control" placeholder="" type="password" value="">
                     </div>
                     <button class="btn btn-primary btn-lg full-width">Change your Password!</button>
                 </form>

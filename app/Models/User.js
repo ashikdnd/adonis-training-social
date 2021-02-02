@@ -21,6 +21,8 @@ class User extends Model {
     })
   }
 
+  static get objectIDs() { return ['_id'] }
+
   /**
    * A relationship on tokens is required for auth to
    * work. Since features like `refreshTokens` or
@@ -33,6 +35,10 @@ class User extends Model {
    */
   tokens () {
     return this.hasMany('App/Models/Token')
+  }
+
+  profile() {
+    return this.hasOne('App/Models/Profile', '_id', 'user_id')
   }
 }
 
