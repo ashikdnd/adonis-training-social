@@ -27,24 +27,28 @@ class AuthController {
   async register({request, response, session}) {
     try {
       const input = request.all();
-      const dob = input.dob;
+      const dob = input.datetimepicker;
 
       delete input['_csrf'];
-      delete input['dob'];
+      delete input['datetimepicker'];
       delete input['optionsCheckboxes'];
 
       const user = new User();
       user.fill(input);
-      const new_user = await user.save()
+
+      await user.save()
+
+      const lastInsert = await User.query().orderBy('_id','DESC').first();
 
       const user_profile = new Profile()
-      user_profile.user_id = new_user._id;
+      user_profile.user_id = lastInsert._id;
       user_profile.dob = dob;
       user_profile.save();
 
       session.flash({message: 'Registration successful'})
       return response.route('login')
     } catch(e) {
+      console.log(e)
       session.flash({message: 'Registration failed. Try again.'})
       return response.route('login')
     }
