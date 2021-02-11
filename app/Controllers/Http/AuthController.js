@@ -28,22 +28,29 @@ class AuthController {
     try {
       const input = request.all();
       const dob = input.datetimepicker;
+      const designation = input['designation'];
+
+      const profile = {
+        dob: dob,
+        designation: designation
+      }
 
       delete input['_csrf'];
       delete input['datetimepicker'];
       delete input['optionsCheckboxes'];
+      delete input['designation'];
 
       const user = new User();
       user.fill(input);
-
       await user.save()
 
-      const lastInsert = await User.query().orderBy('_id','DESC').first();
+      const lastInsert = await User.query().orderBy('created_at','DESC').first();
+
+      profile.user_id = lastInsert._id;
 
       const user_profile = new Profile()
-      user_profile.user_id = lastInsert._id;
-      user_profile.dob = dob;
-      user_profile.save();
+      user_profile.fill(profile)
+      await user_profile.save();
 
       session.flash({message: 'Registration successful'})
       return response.route('login')
@@ -51,6 +58,15 @@ class AuthController {
       console.log(e)
       session.flash({message: 'Registration failed. Try again.'})
       return response.route('login')
+    }
+  }
+
+  async uploadProfile({request, response}) {
+    const input = request.all()
+    const file = input.file('uploaded_file')
+    const saveFile = file.move('')
+    if(saveFile) {
+      response.json({success: true, message: saveFile})
     }
   }
 

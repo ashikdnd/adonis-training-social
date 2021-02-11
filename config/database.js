@@ -83,7 +83,7 @@ module.exports = {
 
   mongodb: {
     client: 'mongodb',
-    connectionString: Env.get('DB_CONNECTION_STRING', 'mongodb+srv://appuser:lHGVkmNyTVC4dJBi@social.ocyvg.mongodb.net/snetwork?authSource=admin&retryWrites=true&w=majority'),
+    connectionString: Env.get('DB_CONNECTION_STRING', 'mongodb+srv://appuser:lHGVkmNyTVC4dJBi@social.ocyvg.mongodb.net/social?authSource=admin&retryWrites=true&w=majority'),
     connection: {
       options: {
         useUnifiedTopology: true,

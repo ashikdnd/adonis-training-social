@@ -1,6 +1,7 @@
 'use strict'
 const User = use('App/Models/User')
-const Profile = user('App/Models/Profile')
+const Profile = use('App/Models/Profile')
+const Post = use('App/Models/Post')
 class AppController {
 
   async listUsers({request, response, view}) {
@@ -15,10 +16,14 @@ class AppController {
     return profile;
   }
 
-  async profile({request, response, view, auth}) {
+  async profile({view, auth}) {
     const user = await User.query().where('_id', auth.user._id).with('profile').first()
+    const post = new Post();
+    const postList =  await post.getTop10(auth.user._id)
+    // return postList;
     return view.render('user/profile', {
-      profile: user.toJSON().profile
+      profile: user.toJSON().profile,
+      postList: postList.toJSON()
     });
   }
 

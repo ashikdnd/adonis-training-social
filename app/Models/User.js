@@ -37,6 +37,14 @@ class User extends Model {
     return this.hasMany('App/Models/Token')
   }
 
+  static get primaryKey() {
+    return '_id';
+  }
+
+  static get hidden () {
+    return ['password']
+  }
+
   profile() {
     return this.hasOne('App/Models/Profile', '_id', 'user_id')
   }

@@ -19,6 +19,14 @@ const Route = use('Route')
 
 Route.group(() => {
   Route.get('', 'AppController.profile')
+
+  // newsfeed routes
+  Route.post('post/submit', 'PostController.add').as('submitPost')
+  Route.post('post/submit', 'PostController.update')
+  Route.post('post/submit', 'PostController.delete')
+
+  Route.post('comment/add', 'CommentController.add').as('addComment')
+
   Route.get('logout', 'AuthController.logout')
 }).middleware(['checkAuth', 'auth'])
 
