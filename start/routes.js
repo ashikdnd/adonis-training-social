@@ -24,11 +24,18 @@ Route.group(() => {
   Route.post('post/submit', 'PostController.add').as('submitPost')
   Route.post('post/submit', 'PostController.update')
   Route.post('post/submit', 'PostController.delete')
+  Route.post('post/like', 'PostController.likePost').as('likePost')
+  Route.delete('post', 'PostController.deletePost').as('deletePost')
 
-  Route.post('comment/add', 'CommentController.add').as('addComment')
+  Route.post('comment', 'CommentController.add').as('addComment')
+  Route.delete('comment', 'CommentController.delete').as('deleteComment')
 
   Route.get('logout', 'AuthController.logout')
 }).middleware(['checkAuth', 'auth'])
+
+Route.group(() => {
+  Route.post('post/like', 'PostController.likePost').as('likePost')
+}).middleware(['checkAuth', 'auth']).prefix('api')
 
 Route.group(() => {
   Route.get('login', 'AuthController.loginPage')

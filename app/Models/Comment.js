@@ -4,7 +4,7 @@
 const Model = use('Model')
 
 class Comment extends Model {
-  static get objectId() {
+  static get objectIDs() {
     return ['_id', 'post_id'];
   }
 }

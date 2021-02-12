@@ -15,6 +15,9 @@ class Post extends Model {
     this.shares = 0;
     this.comments = 0;
   }
+  static get objectIDs() {
+    return ['_id']
+  }
 
   user() {
     return this.hasOne('App/Models/User', 'user_id', '_id');
