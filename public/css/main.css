@@ -131,6 +131,9 @@ if the page has a “left panel”, add a class for BODY -- ".page-has-left-pane
 if the page has a “right panel”, add a class for BODY -- ".page-has-right-panels"
 
 */
+.header-avatar {
+  width: 32px !important;
+}
 .page-has-left-panels {
   padding-left: 70px;
 }

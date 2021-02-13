@@ -30,6 +30,9 @@ Route.group(() => {
   Route.post('comment', 'CommentController.add').as('addComment')
   Route.delete('comment', 'CommentController.delete').as('deleteComment')
 
+  Route.get('user/profile', 'UserController.profile')
+  Route.post('user/profile/uploadphoto', 'UserController.uploadPhoto').as('uploadProfilePhoto')
+
   Route.get('logout', 'AuthController.logout')
 }).middleware(['checkAuth', 'auth'])
 
@@ -41,4 +44,5 @@ Route.group(() => {
   Route.get('login', 'AuthController.loginPage')
   Route.post('login', 'AuthController.login')
   Route.post('register', 'AuthController.register')
+  Route.get('email/activate/:activation_code', 'AuthController.activateUser')
 }).middleware(['redirectToHome', 'guest'])
